@@ -21,8 +21,6 @@ const clientId = 'c4da2392cba848839092b872ca1365d1';
 const redirectUri = 'https://huanlui.github.io/';
 const scopes = [
   'streaming',
-  'user-read-birthdate',
-  'user-read-private',
   'user-modify-playback-state'
 ];
 
@@ -57,7 +55,11 @@ window.onSpotifyPlayerAPIReady = () => {
     console.log('Ready with Device ID', data.device_id);
     
     // Play a track using our new device ID
-    play(data.device_id);
+    play(data.device_id, "spotify:track:5q53KFQSjZnJGHlu6zsW9X");
+    
+    setTimeout( () => {
+      play(data.device_id, "spotify:track:5ya2gsaIhTkAuWYEMB0nw5");      
+    },5000);
   });
 
   // Connect to the player!
@@ -65,7 +67,7 @@ window.onSpotifyPlayerAPIReady = () => {
 }
 
 // Play a specified track on the Web Playback SDK's device ID
-function play(device_id) {
+function play(device_id, track) {
   $.ajax({
    url: "https://api.spotify.com/v1/me/player/play?device_id=" + device_id,
    type: "PUT",
