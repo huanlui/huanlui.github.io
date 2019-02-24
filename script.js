@@ -52,12 +52,14 @@ window.onSpotifyPlayerAPIReady = () => {
 
   // Ready
   player.on('ready', data => {
+    alert("Preparado");
     console.log('Ready with Device ID', data.device_id);
     
     // Play a track using our new device ID
     play(data.device_id, "spotify:track:5q53KFQSjZnJGHlu6zsW9X");
     
     setTimeout( () => {
+      alert("voy a cambiar de canción");
       play(data.device_id, "spotify:track:5ya2gsaIhTkAuWYEMB0nw5");      
     },5000);
   });
